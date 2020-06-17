@@ -1,0 +1,53 @@
+header {
+    position: absolute;
+    z-index: 10;
+    /* Expand header so that it fills the page */
+    flex: 100%;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 100;
+    font-family: roboto;
+}
+
+
+header div {
+    display: flex;
+    align-items: center;
+}
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    justify-self: left;
+}
+header li{
+    display: inline;
+    padding: 20px;
+}
+header li:hover{
+    /* Make button darker when the user hovers on it. */
+    background-color: rgba(50, 3, 54, 0.5)
+}
+
+header img {
+    /* Set the logo size */
+    height: 50px;
+}
+
+header h1 {
+    color: hsl(43, 13%, 90%);
+    font-size: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: hsl(43, 13%, 90%)
+}
+
+a:hover {
+    text-decoration: none;
+    color: hsl(43, 13%, 90%)
+}   
