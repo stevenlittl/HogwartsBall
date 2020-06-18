@@ -1,10 +1,21 @@
 
 
 <head>
+    <!-- Set Website Title -->
+    <title>Hogwarts Ball</title>
     <!-- Add header CSS folder -->
     <link rel="stylesheet" href="CSS/header.css">
 </head>
-<header>
+
+<?php
+    // If the webpage has specified that it wants the header clear.
+    if(isset($isClear)){
+        echo("<header class='clear'>");
+    }
+    else {
+        echo("<header class='solid'>");
+    }
+?>
     <div>
         <img src="Assets/img/logo.png" alt="Logo">
         <h1>
