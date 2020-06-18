@@ -22,17 +22,24 @@
         // define variables and set to empty values
         $name = $author_fname = $author_lname = $genre = $review = "";
         $rating = 0;
+        $isEntered = false;
         
 
         //When form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $isEntered = true;
             // get form entries
             $fname = test_input($_POST["fname"]);
             $lname = test_input($_POST["lname"]);
             $streetName = test_input($_POST["address"]);
             $suburb = test_input($_POST["suburb"]);
-            $city = test_input($_POST["city"]);
-            $atDoorPickup = test_input($_POST["door"]);
+            $city = test_input($_POST["city"]); 
+            if (isset($_POST["door"])){
+                $atDoorPickup = test_input($_POST["door"]);
+            }
+            else{
+                $atDoorPickup = false;
+            }
             $ticketAmount = test_input($_POST["ticketNumber"]);
             $email = test_input($_POST["email"]);
         
@@ -61,9 +68,9 @@
             <label for="lname">Last Name</label>
             <input required class="form-control" type="text" id="lname" name="lname">
             <label for="author">Email</label>
-            <input class="form-control" type="text" id="email" name="email">
+            <input required class="form-control" type="email" id="email" name="email">
             <label for="address">Address</label>
-            <input class="form-control" type="text" id="address" name="address">
+            <input requierd class="form-control" type="text" id="address" name="address">
             <label for="street">City</label>
             <input class="form-control" type="text" id="city" name="city">
             <label for="suburb">Suburb</label>
@@ -76,8 +83,22 @@
                 <input id="door" name="door" type="checkbox">
                 I would like to collect my ticket from the door.
             </label>
-            <input type="submit" name="submit" class="btn" style="background-color: purple; color: white" value="Submit">  
+            <input type="submit" name="submit" class="btn" style="background-color: purple; color: white" value="Submit"> 
+            
+            <?php
+                if (mysqli_errno($conn) == 0 && $isEntered){
+                    include("mail.php");
+                    if ($success == true){
+                        header('Location: success.php');
+                    }
+                }
+                else if ($isEntered){
+                    echo("There was a problem");
+                }
+            ?> 
         </form>
+
+        
     </div>
 </body>
 </html>

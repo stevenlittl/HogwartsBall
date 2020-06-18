@@ -2,11 +2,12 @@
 
 require("PHPMailer/src/PHPMailer.php");
 require("PHPMailer/src/SMTP.php");
+$success = false;
 
   $mail = new PHPMailer\PHPMailer\PHPMailer();
   $mail->IsSMTP(); // enable SMTP
 
-  $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+  $mail->SMTPDebug = 0; // debugging: 1 = errors and messages, 2 = messages only
   $mail->SMTPAuth = true; // authentication enabled
   $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
   $mail->Host = "smtp.gmail.com";
@@ -16,12 +17,12 @@ require("PHPMailer/src/SMTP.php");
   $mail->Password = "beanyoda999";
   $mail->SetFrom("me@gmail.com");
   $mail->Subject = "Test";
-  $mail->Body = "hello";
+  $mail->Body = "Thanks for signing up for the hogwarts ball";
   $mail->AddAddress("glueh18@gmail.com");
 
    if(!$mail->Send()) {
       echo "Mailer Error: " . $mail->ErrorInfo;
    } else {
-      echo "Message has been sent";
+      $success = true;
    }
 ?>
