@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Add Font -->
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    
 </head>
 <body>
 
@@ -28,19 +27,19 @@
         //When form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // get form entries
-            $name = test_input($_POST["name"]);
-            $author= test_input($_POST["author"]);
-            $spaceIndex = strpos($author, " ");
-            $author_fname = substr($author, 0, $spaceIndex);
-            $author_lname = substr($author, $spaceIndex, strlen($author) - 1);
-            $genre = test_input($_POST ["genre"]);
-            $review = test_input($_POST ["review"]);
-            $rating = test_input($_POST ["rating"]);
-
-            $INSERT = "INSERT Into books (title, author_fname, author_lname, genre, rating, review) values(?, ?, ?, ?, ?, ?)";
+            $fname = test_input($_POST["fname"]);
+            $lname = test_input($_POST["lname"]);
+            $streetName = test_input($_POST["address"]);
+            $suburb = test_input($_POST["suburb"]);
+            $city = test_input($_POST["city"]);
+            $atDoorPickup = test_input($_POST["door"]);
+            $ticketAmount = test_input($_POST["ticketNumber"]);
+            $email = test_input($_POST["email"]);
+        
+            $INSERT = "INSERT Into ticketsales (fname, lname, streetName, suburb, city, atDoorPickup, ticketAmount, email) values(?, ?, ?, ?, ?, ?, ?, ?)";
             //prepare statement
             $stmt = $conn->prepare($INSERT);
-            $stmt->bind_param("ssssis", $name, $author_fname, $author_lname, $genre, $rating, $review);
+            $stmt->bind_param("sssssbis", $fname, $lname, $streetName, $suburb, $city, $atDoorPickup, $ticketAmount, $email);
             $stmt->execute();
             $stmt->close();
         }
@@ -57,25 +56,27 @@
     <div class="main">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
             <br>
-            <label for="name">Name</label>
-            <input required class="form-control" type="text" id="name" name="name">
+            <label for="fname">First Name</label>
+            <input required class="form-control" type="text" id="fname" name="fname">
+            <label for="lname">Last Name</label>
+            <input required class="form-control" type="text" id="lname" name="lname">
             <label for="author">Email</label>
-            <input class="form-control" type="text" id="author" name="author">
-            <label for="street">Street Name</label>
-            <input class="form-control" type="text" id="genre" name="genre">
+            <input class="form-control" type="text" id="email" name="email">
+            <label for="address">Address</label>
+            <input class="form-control" type="text" id="address" name="address">
             <label for="street">City</label>
-            <input class="form-control" type="text" id="genre" name="genre">
+            <input class="form-control" type="text" id="city" name="city">
             <label for="suburb">Suburb</label>
-            <input class="form-control" type="text" id="genre" name="genre">
+            <input class="form-control" type="text" id="suburb" name="suburb">
             <br>
             <label for="name">No. of Tickets</label>
             <input name="ticketNumber" type="number">
             <br>
             <label for="door">
-                <input id="door" type="checkbox">
+                <input id="door" name="door" type="checkbox">
                 I would like to collect my ticket from the door.
             </label>
-            <input type="submit" name="submit" class="btn" value="Add Book">  
+            <input type="submit" name="submit" class="btn" style="background-color: purple; color: white" value="Submit">  
         </form>
     </div>
 </body>
