@@ -17,10 +17,12 @@
             <div class="main-photo">
 
             </div>
+            <div class="main-title">
+                <h1> The Hogwarts Ball</h1>
+            </div>
+            <div class="gap">
+            </div>
             <div class="grid">
-                <div class="header">
-                    <h2>The Hogwarts Ball</h2>
-                </div>
                 <div class="sidebar">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet ipsum eu urna iaculis aliquet. Maecenas condimentum, dolor in porta feugiat, eros nulla convallis nulla, vitae lacinia purus lorem ac nibh. Quisque in neque in tortor egestas gravida. Vivamus eget urna nec nunc venenatis imperdiet et nec ipsum. Etiam in sapien metus. Nulla facilisi. Nullam vitae turpis at tellus rutrum ullamcorper sed in leo. Quisque eget magna sapien. Etiam ultrices risus a commodo facilisis. Proin placerat erat nec purus laoreet faucibus. Vestibulum ultricies scelerisque scelerisque. Curabitur vel feugiat arcu, quis varius diam.
                 </div>
