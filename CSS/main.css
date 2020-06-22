@@ -4,6 +4,10 @@ body{
     font-family: roboto;
 }
 
+h1 {
+    font-size: 3rem;
+}
+
 .main-photo {
     width: 100%;
     background-image: url("../Assets/img/banquet_hall.jpg");
@@ -25,8 +29,23 @@ body{
 }
 
 .gap {
+    height: 150px;
     background-color: rgb(108, 20, 167);
-    height: 150px
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.info > .text {
+    max-width: 600px;
+    border: 1px solid black;
+    box-shadow: black;
+    box-shadow: 5px 5px 4px 5px #888888;
+    padding: 5px;
+    font-size: 1rem;
 }
 
 .main {
@@ -37,3 +56,16 @@ body{
 form {
     max-width: 400px;
 }
+
+
+.form-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+}
+
+input[type="number"] {
+    width: 50px;
+}
+
+

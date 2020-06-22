@@ -1,6 +1,7 @@
 header {
     
     /* Expand header so that it fills the page */
+    width: 100%;
     flex: 100%;
     padding: 0px;
     display: flex;

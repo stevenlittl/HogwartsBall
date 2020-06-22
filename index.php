@@ -21,10 +21,12 @@
         </div>
         <div class="gap">
         </div>
-        <div>
-            The Hogwarts Ball is an annual event created to raise funds for the school's PTA. 
-            The school's PTA helps the school's extracirricullar activities including Quidditch, 
-            day trips to Afganistan, and meals for the children in need.
+        <div class="info">
+            <div class="text">
+                The Hogwarts Ball is an annual event created to raise funds for the school's PTA. 
+                The school's PTA helps the school's extracirricullar activities including Quidditch, 
+                day trips to Afganistan, and meals for the children in need.
+            </div>
         </div>
         
     </div>

@@ -4,6 +4,17 @@ require("PHPMailer/src/PHPMailer.php");
 require("PHPMailer/src/SMTP.php");
 $success = false;
 
+   if (!isset($emailFrom)){
+      $emailFrom = "noreply.hogwartspta@gmail.com";
+   }
+   if (!isset($subject)){
+      $subject = '';
+   }
+
+   if (!isset($emailTo)){
+      $emailTo = "glueh18@gmail.com";
+   }
+
   $mail = new PHPMailer\PHPMailer\PHPMailer();
   $mail->IsSMTP(); // enable SMTP
 
@@ -15,10 +26,10 @@ $success = false;
   $mail->IsHTML(true);
   $mail->Username = "hogwartspta@gmail.com";
   $mail->Password = "beanyoda999";
-  $mail->SetFrom("me@gmail.com");
-  $mail->Subject = "Test";
-  $mail->Body = "Thanks for signing up for the hogwarts ball";
-  $mail->AddAddress("glueh18@gmail.com");
+  $mail->SetFrom($emailFrom);
+  $mail->Subject = "Hogwarts PTA " . $subject;
+  $mail->Body = $message;
+  $mail->AddAddress($emailTo);
 
    if(!$mail->Send()) {
       echo "Mailer Error: " . $mail->ErrorInfo;

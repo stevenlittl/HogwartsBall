@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['login'])) {
+        location("header", "adminlogin");
+    }
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

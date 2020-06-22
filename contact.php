@@ -12,7 +12,6 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 </head>
 <body>
-    
 
     <!--Include Header-->
     <?php include("includes/header.php"); ?>
@@ -32,29 +31,10 @@
             // get form entries
             $fname = test_input($_POST["fname"]);
             $lname = test_input($_POST["lname"]);
-            $streetName = test_input($_POST["address"]);
-            $suburb = test_input($_POST["suburb"]);
-            $city = test_input($_POST["city"]); 
-            if (isset($_POST["door"])){
-                $atDoorPickup = test_input($_POST["door"]);
-            }
-            else{
-                $atDoorPickup = false;
-            }
-            $ticketAmount = test_input($_POST["ticketNumber"]);
             $email = test_input($_POST["email"]);
-
-            // For Mail Plugin
-            $message = 
-            "<div style='width: 100%; height: 50px; background-color: purple;'>
-            </div>Thanks for purchasing tickets to the Hogwarts Ball";
-        
-            $INSERT = "INSERT Into ticketsales (fname, lname, streetName, suburb, city, atDoorPickup, ticketAmount, email) values(?, ?, ?, ?, ?, ?, ?, ?)";
-            //prepare statement
-            $stmt = $conn->prepare($INSERT);
-            $stmt->bind_param("sssssbis", $fname, $lname, $streetName, $suburb, $city, $atDoorPickup, $ticketAmount, $email);
-            $stmt->execute();
-            $stmt->close();
+            $message = test_input($_POST["message"]);
+            $emailFrom = $email;
+            $subject = $fname . " " . $lname;
         }
 
         function test_input($data) {
@@ -77,31 +57,17 @@
             </div>
             <label for="author">Email</label>
             <input required class="form-control" type="email" id="email" name="email">
-            <label for="address">Address</label>
-            <input requierd class="form-control" type="text" id="address" name="address">
-            <label for="street">City</label>
-            <input class="form-control" type="text" id="city" name="city">
-            <label for="suburb">Suburb</label>
-            <input class="form-control" type="text" id="suburb" name="suburb">
+            <label for="message">Message</label>
+            <textarea name="message" class="form-control" id="message" cols="30" rows="10"></textarea>
             <br>
-            <label for="name">No. of Tickets</label>
-            <input value="1" name="ticketNumber" type="number">
-            <br>
-            <label for="door">
-                <input id="door" name="door" type="checkbox">
-                I would like to collect my ticket from the door.
-            </label>
-            <input type="submit" name="submit" class="btn" style="background-color: purple; color: white" value="Submit"> 
+            <input type="submit" name="submit" class="btn" style="background-color: purple; color: white" value="Send"> 
             
             <?php
-                if (mysqli_errno($conn) == 0 && $isEntered){
+                if ($isEntered){
                     include("mail.php");
                     if ($success == true){
-                        header('Location: success.php');
+                        header('Location: contact-success.php');
                     }
-                }
-                else if ($isEntered){
-                    echo("There was a problem");
                 }
             ?> 
         </form>

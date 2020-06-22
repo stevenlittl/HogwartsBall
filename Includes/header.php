@@ -26,5 +26,6 @@
     <ul>
         <a href="index.php"><li>Home</li></a>
         <a href="buy.php"><li>Buy Tickets</li></a>
+        <a href="contact.php"><li>Contact</li></a>
     </ul>
 </header>
