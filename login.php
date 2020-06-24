@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Set Website Title -->
-    <title>BookFinder</title>
     <!-- Set Favicon -->
     <link rel="icon" href="Images/logo.png">
     <link rel="stylesheet" href="CSS/main.css">
@@ -12,64 +10,63 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Add Font -->
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="JS/search.js"></script>
 </head>
-<?php include("includes/header.php"); ?>
-
-<?php
-    $error = "";
-   include("sqlconfig.php");
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-      
-      $myemail = mysqli_real_escape_string($conn,$_POST['email']);
-      echo($myemail);
-      $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
-      
-      $sql = "SELECT userId FROM users WHERE userEmail = '$myemail' and userPassword= '$mypassword'";
-      $result = mysqli_query($conn,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      
-      $count = mysqli_num_rows($result);
-      
-      
-      // If result matched $myusername and $mypassword, table row must be 1 row
-		
-      if($count == 1) {
-         $_SESSION["myusername"];
-         $_SESSION['login_user'] = $myemail;
-         header("location: list.php");
-      }else {
-         $error = "Your Login Name or Password is invalid";
-      }
-      
-   }
-?>
-
-
-
 <body>
-    <div class="form-page">
-        <div class="form">
-            <div>
-                Login
-            </div>
-            <div class="error">
-                <?php
-                    echo($error);
-                ?>
-            </div>
-            <form action="" method="post">
-                <input type="text" name="email" placeholder="Email" class="form-control">
-                <input type="password" name="password" placeholder="Password" class="form-control">
-                <button class="form-control">
-                    Login
-                </button>
-            </form>
-             
-        </div>
+
+    <!--Include Header-->
+    <?php include("includes/header.php"); ?>
+    <?php
+        // run sql setup
+        require_once("sqlconfig.php");
+        
+        if (isset($_SESSION['login'])){
+            if ($_SESSION['login']){
+                header("Location: admin.php");
+            }
+        }
+    
+        //When form is submitted
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $password = test_input($_POST["password"]);
+            $SELECT = "SELECT adminPassword from globals";
+            $result = $conn->query($SELECT);
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()){
+                    $hash =  $row["adminPassword"];
+                    if (password_verify($password, $hash)) {
+                        $_SESSION["login"] = true;
+                        header("Location: admin.php");
+                    } else {
+                        echo 'Invalid password.';
+                    }
+                }
+            } else {
+                echo "ERROR, Please Contact Admin";
+            }
+        }
+
+        function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+        }
+        
+    ?>
+    <!-- New Item Entry -->
+    <div class="main">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+            <label for="author">Password</label>
+            <input required class="form-control" type="password" id="password" name="password"><br>
+            <input type="submit" name="submit" class="btn" style="background-color: purple; color: white" value="Login"> 
+        </form>
+
+        
     </div>
 </body>
+</html>
+
+
+
+

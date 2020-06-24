@@ -9,6 +9,8 @@
 
 <?php
     // If the webpage has specified that it wants the header clear.
+    session_start();
+
     if(isset($isClear)){
         echo("<header class='clear'>");
     }
@@ -27,5 +29,13 @@
         <a href="index.php"><li>Home</li></a>
         <a href="buy.php"><li>Buy Tickets</li></a>
         <a href="contact.php"><li>Contact</li></a>
+        <?php
+            if (isset($_SESSION['login'])){
+                if ($_SESSION['login']){
+                    echo("<a href='admin.php'><li>Admin</li></a>");
+                    echo("<a href='logout.php'><li>Logout</li></a>");
+                }
+            }
+        ?>
     </ul>
 </header>
