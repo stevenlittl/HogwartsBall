@@ -36,7 +36,7 @@
             $suburb = test_input($_POST["suburb"]);
             $city = test_input($_POST["city"]); 
             if (isset($_POST["door"])){
-                $atDoorPickup = test_input($_POST["door"]);
+                $atDoorPickup = true;
             }
             else{
                 $atDoorPickup = false;

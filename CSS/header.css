@@ -10,6 +10,7 @@ header {
     align-items: center;
     font-weight: 100;
     font-family: roboto;
+    height: 70px;
 }
 
 header.clear {
@@ -25,6 +26,7 @@ header.solid {
 header div {
     display: flex;
     align-items: center;
+    margin-left: 20px;
 }
 header ul {
     list-style-type: none;

@@ -19,7 +19,6 @@
     }
 ?>
     <div>
-        <img src="Assets/img/logo.png" alt="Logo">
         <h1>
             Hogwarts PTA    
         </h1>

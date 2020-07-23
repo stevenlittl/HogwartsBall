@@ -18,6 +18,8 @@
     <?php
         // run sql setup
         require_once("sqlconfig.php");
+
+
         
         if (isset($_SESSION['login'])){
             if ($_SESSION['login']){
@@ -27,18 +29,19 @@
     
         //When form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $password = test_input($_POST["password"]);
+            $password = $_POST["password"];
             $SELECT = "SELECT adminPassword from globals";
             $result = $conn->query($SELECT);
             if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()){
                     $hash =  $row["adminPassword"];
+                    echo('<script>alert("'. strlen($hash) . '")</script>');
                     if (password_verify($password, $hash)) {
                         $_SESSION["login"] = true;
                         header("Location: admin.php");
                     } else {
-                        echo 'Invalid password.';
+                        
                     }
                 }
             } else {
@@ -57,7 +60,7 @@
     <!-- New Item Entry -->
     <div class="main">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-            <label for="author">Password</label>
+            <label for="author">Password (hello)</label>
             <input required class="form-control" type="password" id="password" name="password"><br>
             <input type="submit" name="submit" class="btn" style="background-color: purple; color: white" value="Login"> 
         </form>
