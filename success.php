@@ -12,9 +12,11 @@
 <body>
     <!--Include Header-->
     <?php include("includes/header.php"); ?>
+    
     <div class="main">
-        You have successfully bought tickets for the Hogwarts Ball. Check your email for confirmation. <br>
-        Thanks Very Much for Supporting the Hogwarts PTA.
+        ✅ You have successfully bought tickets for the Hogwarts Ball. <br>
+        📧 Check your email for confirmation. <br>
+        🏫 Thank You for Supporting the Hogwarts PTA.
     </div>
     
     

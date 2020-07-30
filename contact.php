@@ -50,10 +50,14 @@
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
             <br>
             <div class="form-grid">
-                <label for="fname">First Name</label>
-                <label for="lname">Last Name</label>
-                <input required class="form-control" type="text" id="fname" name="fname">
-                <input required class="form-control" type="text" id="lname" name="lname">
+                <div class="column">
+                    <label for="fname">First Name</label>
+                    <input required class="form-control" type="text" id="fname" name="fname">
+                </div>
+                <div class="column">
+                    <label for="lname">Last Name</label>
+                    <input required class="form-control" type="text" id="lname" name="lname">
+                </div>
             </div>
             <label for="author">Email</label>
             <input required class="form-control" type="email" id="email" name="email">
@@ -65,8 +69,8 @@
             <?php
                 if ($isEntered){
                     include("mail.php");
-                    if ($success == true){
-                        header('Location: contact-success.php');
+                    if ($mailsuccess == true){
+                        header('Location: successcontact.php');
                     }
                 }
             ?> 

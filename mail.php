@@ -2,17 +2,20 @@
 
 require("PHPMailer/src/PHPMailer.php");
 require("PHPMailer/src/SMTP.php");
-$success = false;
+$mailsuccess = false;
 
-   if (!isset($emailFrom)){
-      $emailFrom = "noreply.hogwartspta@gmail.com";
-   }
    if (!isset($subject)){
       $subject = '';
+      if (isset($emailFrom)) {
+         $subject = "Question from " . $emailFrom;
+      }
    }
 
+   $emailFrom = "Thisdoesntshowanyway@gmail.com";
+
+   // If no email specified send to admin email
    if (!isset($emailTo)){
-      $emailTo = "glueh18@gmail.com";
+      $emailTo = "hogwartspta@gmail.com";
    }
 
   $mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -34,6 +37,6 @@ $success = false;
    if(!$mail->Send()) {
       echo "Mailer Error: " . $mail->ErrorInfo;
    } else {
-      $success = true;
+      $mailsuccess = true;
    }
 ?>

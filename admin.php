@@ -113,7 +113,7 @@
                         </td>
                 </table>
             </form>
-        </div>
+        </div> 
         <div class="page">
             <table class="statistics">
                 <tr>
@@ -138,6 +138,7 @@
                                 <td>" . $row["fname"] . "</td>
                                 <td> " . $row["lname"] . "</td>
                                 <td>" . $row["email"] . "</td>
+                                <td>" . $row["streetName"] . "<br>" . $row["suburb"] . "<br>" . $row["city"] ."</td>
                                 <td>" . $row["ticketAmount"] . "</td>
                                 <td><input class='" .$row["ID"].  "' type='checkbox' ". $checked . "></td>
                                 </tr>");
@@ -161,8 +162,13 @@
                     $paymentsMade = 0;
                     $ticketsPaid = 0;
                     $ticketsAtDoor = 0;
+                    // Get all ticket orders
                     $ALL_SELECT = "SELECT * from ticketsales ORDER BY fname";
+
+                    // Get tickets that haven't been paid for
                     $NO_PAY_SELECT = "SELECT * from ticketsales WHERE paid = false OR paid is NULL ORDER BY fname";
+
+                    // Get the tickets that haven't been paid for and that the user has opted for door pickup.
                     $DOOR_PAY_SELECT = "SELECT * from ticketsales WHERE (paid = false OR paid is NULL) AND atDoorPickup = true ORDER BY fname";
                     $result = $conn->query($ALL_SELECT);
                     if ($result->num_rows > 0) {

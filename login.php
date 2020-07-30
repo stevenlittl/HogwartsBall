@@ -30,13 +30,12 @@
         //When form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $password = $_POST["password"];
-            $SELECT = "SELECT adminPassword from globals";
+            $SELECT = "SELECT value FROM globals WHERE global='adminPassword'";
             $result = $conn->query($SELECT);
             if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()){
-                    $hash =  $row["adminPassword"];
-                    echo('<script>alert("'. strlen($hash) . '")</script>');
+                    $hash =  implode($row);
                     if (password_verify($password, $hash)) {
                         $_SESSION["login"] = true;
                         header("Location: admin.php");
@@ -63,9 +62,7 @@
             <label for="author">Password (hello)</label>
             <input required class="form-control" type="password" id="password" name="password"><br>
             <input type="submit" name="submit" class="btn" style="background-color: purple; color: white" value="Login"> 
-        </form>
-
-        
+        </form>        
     </div>
 </body>
 </html>

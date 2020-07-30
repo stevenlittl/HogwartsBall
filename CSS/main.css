@@ -10,11 +10,13 @@ h1 {
 
 .main-photo {
     width: 100%;
+    /* Give background a tint */
     background-image: url("../Assets/img/banquet_hall.jpg");
     background-position: 10%;
     background-color: rgba(66, 4, 53, 0.6); 
     background-blend-mode: multiply;
     background-size: cover;
+    
     height: 600px;
     max-height: 600px;
 }
@@ -51,6 +53,7 @@ h1 {
 .main {
     display: flex;
     justify-content: center;
+    font-size: 20px;
 }
 
 form {
@@ -59,9 +62,14 @@ form {
 
 
 .form-grid {
-    display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display:flex;
+    flex-direction: column;
+    margin-right: 10px;
 }
 
 input[type="number"] {

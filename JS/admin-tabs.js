@@ -32,46 +32,24 @@ function onload(){
                 alert("Error \n Refresh the page and retry")
                 //Then return the checkbox to its original state.
                 $("input." + id).prop( "checked", !checked)
-          }
-          else {
-              colourClass = parseInt(result[0]) ? "green" : (parseInt(result[1]) ? "orange" : "red");
-              $("div input." + id).parent().parent().children().first().attr("class", colourClass);
-          }
-        }});
+            }
+            else {
+                // Else change the colour
+                colourClass = parseInt(result[0]) ? "green" : (parseInt(result[1]) ? "orange" : "red");
+                $("div input." + id).parent().parent().children().first().attr("class", colourClass);
+            }
+        }
     });
-
-    $("div.tabs input").click(function(){
-        id = $(this).attr("class")
-        console.log(id)
-        section = $(this).closest("div").attr("class")
-        checked = $(this).is(':checked')
-        let url = "setpaid.php?id=" + id + "&paid=" + checked
-        $.ajax({url, success: function(result){
-          result = result.split(",")
-          i = checked ? 1 : 0;
-          if(parseInt(result[0]) != i){
-              alert("Error Please try again")
-              $("input." + id).prop( "checked", !$(this).is(':checked'))
-          }
-          else {
-              console.log(result[1])
-              colourClass = parseInt(result[0]) ? "green" : (parseInt(result[1]) ? "orange" : "red");
-              console.log(colourClass)
-              $("div input." + id).parent().parent().children().first().attr("class", colourClass);
-          }
-        }});
     });
 }
-
-
 
 
 function reload() {
     window.location.reload(false); 
 }
 
-
 function setactive(id){
+    // The tab select menu using classes to show and hide the different pages.
     $(".tab-menu li").removeClass("active")
     $("#" + id).addClass("active")
     $(".tabs").children().addClass("hidden")
